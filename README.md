@@ -20,7 +20,7 @@ A Spring Boot project with unit testing using MockMvc is an example of a Java ap
 1. **Test:** Define environment variables in your test IDE on post 8080, such as `profile=test;`.
 2. **Production:** Set production environment variables in your IDE on port 8443, such as `profile=prod;`.
 3. **Docker:** Set test environment variables in your docker (test or production), such as `profile=test;`.
-4. 
+   
 ### Execution:
 
 1. Run the command to install the dependencies (Note: as you will already be running the test environment, that is, the unit tests, you will need to place the environment variables together with the maven command): `mvn clean install -Dprofile=test `.
