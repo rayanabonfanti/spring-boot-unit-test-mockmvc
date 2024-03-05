@@ -2,13 +2,7 @@
 
 ## Overview
 
-x
-
-## Main Features
-
-### CRUD User
-
-x
+A Spring Boot project with unit testing using MockMvc is an example of a Java application that uses the Spring Boot framework to create a RESTful web service and perform unit tests to verify the behavior of this service in RestController.
 
 ### Language and Tools
 
