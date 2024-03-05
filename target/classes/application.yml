@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: ${profile}
+
+logging:
+  file:
+    name: "/var/log/unit-test-mockmvc/unit-test-mockmvc.log"
+  level:
+    root: INFO

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CustomerServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">unit-test-mockmvc</a> &gt; <a href="index.source.html" class="el_package">com.desafio.serasa.experian.services</a> &gt; <span class="el_source">CustomerServiceImpl.java</span></div><h1>CustomerServiceImpl.java</h1><pre class="source lang-java linenums">package com.desafio.serasa.experian.services;
+
+import com.desafio.serasa.experian.domain.dtos.*;
+import com.desafio.serasa.experian.domain.entity.Customer;
+import com.desafio.serasa.experian.exceptions.CustomException;
+import com.desafio.serasa.experian.interfaces.CustomerService;
+import com.desafio.serasa.experian.repositories.CustomerRepository;
+import com.desafio.serasa.experian.utils.CustomerUtils;
+import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+<span class="fc" id="L16">@Slf4j</span>
+@Service
+public class CustomerServiceImpl implements CustomerService {
+
+    private static final String OBJECT_NOT_FOUND = &quot;Object not found.&quot;;
+    private final CustomerRepository customerRepository;
+
+<span class="fc" id="L23">    public CustomerServiceImpl(CustomerRepository customerRepository) {</span>
+<span class="fc" id="L24">        this.customerRepository = customerRepository;</span>
+<span class="fc" id="L25">    }</span>
+
+    @Override
+    public CustomerResponseDTO save(@Valid Customer save) throws CustomException {
+<span class="nc bnc" id="L29" title="All 2 branches missed.">        if (Optional.ofNullable(this.customerRepository.findByName(save.getName())).isPresent())</span>
+<span class="nc" id="L30">            throw new CustomException(HttpStatus.BAD_REQUEST.value(), &quot;Object exist.&quot;);</span>
+
+<span class="nc" id="L32">        this.customerRepository.save(save);</span>
+<span class="nc" id="L33">        return CustomerUtils.createCustomerResponseDTO(save);</span>
+    }
+
+    @Override
+    public String delete(Long id) throws CustomException {
+<span class="nc" id="L38">        Optional&lt;Customer&gt; findCustomer = customerRepository.findById(id);</span>
+
+<span class="nc bnc" id="L40" title="All 2 branches missed.">        if (findCustomer.isPresent()) {</span>
+<span class="nc" id="L41">            customerRepository.delete(findCustomer.get());</span>
+<span class="nc" id="L42">            return &quot;Customer deleted.&quot;;</span>
+        }
+
+<span class="nc" id="L45">        throw new CustomException(HttpStatus.BAD_REQUEST.value(), OBJECT_NOT_FOUND);</span>
+    }
+
+    @Override
+    public CustomerResponseDTO update(Long id, @Valid Customer update) throws CustomException {
+<span class="nc" id="L50">        Optional&lt;Customer&gt; findCustomer = customerRepository.findById(id);</span>
+
+<span class="nc bnc" id="L52" title="All 2 branches missed.">        if (findCustomer.isPresent()) {</span>
+<span class="nc" id="L53">            Customer customer = findCustomer.get();</span>
+<span class="nc" id="L54">            CustomerUtils.updateCustomerWithDates(customer, update);</span>
+<span class="nc" id="L55">            customerRepository.save(customer);</span>
+<span class="nc" id="L56">            return CustomerUtils.createCustomerResponseDTO(update);</span>
+        }
+
+<span class="nc" id="L59">        throw new CustomException(HttpStatus.BAD_REQUEST.value(), OBJECT_NOT_FOUND);</span>
+    }
+
+    @Override
+    public CustomerResponseDTO getName(String name) throws CustomException {
+<span class="nc" id="L64">        Optional&lt;Customer&gt; customerOptional = Optional.ofNullable(customerRepository.findByName(name));</span>
+
+<span class="nc bnc" id="L66" title="All 2 branches missed.">        if (customerOptional.isPresent()) {</span>
+<span class="nc" id="L67">            Customer customer = customerOptional.get();</span>
+<span class="nc" id="L68">            return CustomerUtils.createCustomerResponseDTO(customer);</span>
+        }
+
+<span class="nc" id="L71">        throw new CustomException(HttpStatus.BAD_REQUEST.value(), OBJECT_NOT_FOUND);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

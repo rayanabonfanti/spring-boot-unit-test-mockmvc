@@ -1,0 +1,14 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+unit-test-mockmvc,com.desafio.serasa.experian.utils,CustomerUtils,23,0,0,0,8,0,2,0,2,0
+unit-test-mockmvc,com.desafio.serasa.experian.domain.dtos,CustomerResponseDTO,146,25,30,0,2,5,23,5,8,5
+unit-test-mockmvc,com.desafio.serasa.experian.domain.dtos,CustomerResponseDTO.CustomerResponseDTOBuilder,8,28,0,0,0,1,1,5,1,5
+unit-test-mockmvc,com.desafio.serasa.experian.domain.entity,Customer,154,60,38,0,0,9,22,12,3,12
+unit-test-mockmvc,com.desafio.serasa.experian.domain.entity,Customer.CustomerBuilder,10,35,0,0,0,1,1,6,1,6
+unit-test-mockmvc,com.desafio.serasa.experian.documentation,OpenApiConfig,3,0,0,0,1,0,1,0,1,0
+unit-test-mockmvc,com.desafio.serasa.experian.database,DataInitializer,0,30,0,0,0,12,0,3,0,3
+unit-test-mockmvc,com.desafio.serasa.experian,SystemApplication,0,9,0,0,0,3,0,2,0,2
+unit-test-mockmvc,com.desafio.serasa.experian.exceptions,CustomException,0,15,0,0,0,3,0,3,0,3
+unit-test-mockmvc,com.desafio.serasa.experian.exceptions,ErrorResponse,0,15,0,0,0,3,0,3,0,3
+unit-test-mockmvc,com.desafio.serasa.experian.exceptions,GlobalExceptionHandler,28,43,0,0,7,10,1,4,1,4
+unit-test-mockmvc,com.desafio.serasa.experian.services,CustomerServiceImpl,99,10,8,0,21,4,8,2,4,2
+unit-test-mockmvc,com.desafio.serasa.experian.controllers,CustomerController,0,44,0,0,0,9,0,7,0,7
